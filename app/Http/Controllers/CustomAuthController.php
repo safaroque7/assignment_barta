@@ -20,6 +20,6 @@ class CustomAuthController extends Controller
                 ->withSuccess('Signed in');
         }
 
-        return redirect("login")->withSuccess('Login details are not valid');
+        return back()->with('error', 'username or password is not correct');
     }
 }

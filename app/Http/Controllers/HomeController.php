@@ -41,4 +41,10 @@ class HomeController extends Controller
     {
         return view("signIn");
     }
+
+
+    public function form()
+    {
+        return view("form");
+    }
 }

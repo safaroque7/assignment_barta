@@ -154,7 +154,7 @@
                     >Edit Profile</a
                   >
                   <a
-                    href="{{route('signIn')}}"
+                    href="{{route('signOut')}}"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     role="menuitem"
                     tabindex="-1"
@@ -281,6 +281,11 @@
       @yield('homebody')
       @yield('profile')
       @yield('editProfile')
+      @yield('form')
+      @yield('form1')
+      @yield('form2')
+      @yield('form3')
+      @yield('formFinal')
 
       <!-- Barta Create Post Card -->
 <!--      <form-->
