@@ -71,6 +71,15 @@
                     </div>
                 </div>
 
+                <!-- Password -->
+                <div>
+                    <label for="bio" class="block text-sm font-medium leading-6 text-gray-900">Biodata</label>
+                    <div class="w-100">
+                        <textarea name="bio" id="bio" cols="30" rows="5" class="block w-full rounded-md border-0 p-2 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300"></textarea>
+                    </div>
+                </div>
+
+
                 <div>
                     <button type="submit"
                         class="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">

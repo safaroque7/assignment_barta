@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+
+    public function index()
+    {
+        return view("welcome");
+    }
     public function profile()
     {
         $allUsers = DB::table("users")->limit(1)->orderBy('id', 'desc')->get();
@@ -31,6 +36,7 @@ class HomeController extends Controller
             'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
+            'bio' => $request->bio,
         ];
 
         DB::table("users")->insert($user);

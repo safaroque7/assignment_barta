@@ -87,3 +87,7 @@ Route::post('/formFinal', [FormController1::class, 'formFinal'])->name('formFina
 Route::get('/form2', [
     FormController1::class, 'showForm2'
 ])->name('form2.show');
+
+
+
+Route::get('/welcome', [HomeController::class,'index']);

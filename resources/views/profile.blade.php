@@ -20,15 +20,12 @@
 
                 <!-- User Meta -->
                 <div>
-
                     @foreach ($users as $user)
-                    <h1> {{ $user->first_name }} </h1>
+                        {{ $user->first_name }}
                     @endforeach
-
-
-
-                    <h1 class="font-bold md:text-2xl">Ahmed Shamim Hasan Shaon</h1>
-                    <p class="text-gray-700">Less Talk, More Code 💻</p>
+                    
+                    {{-- <h1> {{ Auth::user()->first_name }} </h1>
+                    <p class="text-gray-700"> {{ Auth::user()->bio }} </p> --}}
                 </div>
                 <!-- / User Meta -->
             </div>
