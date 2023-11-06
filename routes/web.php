@@ -18,6 +18,7 @@ use App\Http\Controllers\CustomAuthController;
 */
 
 Route::get('/', function () {
+
     return view('welcome');
 });
 
@@ -90,4 +91,4 @@ Route::get('/form2', [
 
 
 
-Route::get('/welcome', [HomeController::class,'index']);
+Route::get('/', [HomeController::class,'index']);

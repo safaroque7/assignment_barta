@@ -13,6 +13,9 @@
 
         <a href="{{ route('form1') }}"> Form 1 </a>
 
-
+        <h1> Current User ID </h1>
+        {{ $user_id }}
+        <h1> Cureent User's name </h1>
+        {{ $user_name }}
     </div>
 @endsection

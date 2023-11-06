@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
 
     public function index()
     {
-        return view("welcome");
+        $user_id = Auth::user()->id;
+        $user_name = Auth::user()->name;
+        return view("welcome", compact("user_id", "user_name"));
     }
     public function profile()
     {
@@ -40,7 +43,7 @@ class HomeController extends Controller
         ];
 
         DB::table("users")->insert($user);
-        return redirect()->route('profile');
+        return redirect()->route('signIn');
     }
 
     public function signIn()
