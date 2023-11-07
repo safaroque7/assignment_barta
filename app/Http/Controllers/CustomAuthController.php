@@ -44,7 +44,7 @@ class CustomAuthController extends Controller
         //    $user->save();
         //    return back()->with('success','Profile Updated');
 
-        dd($validated);
+        // dd($validated);
 
         $user = [
             'first_name' => $request->first_name,
