@@ -11,9 +11,11 @@ class HomeController extends Controller
 
     public function index()
     {
-        $user_id = Auth::user()->id;
-        $user_name = Auth::user()->name;
-        return view("welcome", compact("user_id", "user_name"));
+        // $user_id = Auth::user()->id;
+        // $user_name = Auth::user()->name;
+        // return view("welcome", compact("user_id", "user_name"));
+
+        return view("welcome");
     }
     public function profile()
     {

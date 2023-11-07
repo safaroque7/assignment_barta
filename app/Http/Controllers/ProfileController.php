@@ -11,8 +11,8 @@ class ProfileController extends Controller
         return response()->json($request->user()->only('name', 'email'));
     }
 
-    public function update(Request $request){[
-        'name' => ['required', 'string'],
-        'email'=> ['required','email', Role::unique('users')->ignore(auth()->user())],
-    ]}
-} 
+    // public function update(){[
+    //     'name' => ['required', 'string'],
+    //     'email'=> ['required','email', Role::unique('users')->ignore(auth()->user())],
+    // ]}
+}

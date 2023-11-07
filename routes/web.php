@@ -1,9 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FormController1;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomAuthController;
 
 /*
@@ -17,14 +19,21 @@ use App\Http\Controllers\CustomAuthController;
 |
 */
 
-Route::get('/', function () {
+Route::get(
+    '/',
+    function () {
 
-    return view('welcome');
-});
+        if (Auth::check()) {
+            return view('welcome');
+        } else {
+            return redirect('signIn');
+        }
+    }
+);
 
 
 Route::get('profile', [HomeController::class, 'profile'])->name('profile');
-Route::get('editProfile', [HomeController::class, 'editProfile'])->name('editProfile');
+Route::get('edit/profile', [HomeController::class, 'editProfile'])->name('editProfile');
 Route::get('registerUser', [HomeController::class, 'registerUser'])->name('registerUser');
 Route::post('registrationPost', [HomeController::class, 'registrationPost'])->name('registrationPost');
 Route::get('signIn', [HomeController::class, 'signIn'])->name('signIn');
@@ -89,6 +98,7 @@ Route::get('/form2', [
     FormController1::class, 'showForm2'
 ])->name('form2.show');
 
+Route::get('/', [HomeController::class, 'index']);
 
-
-Route::get('/', [HomeController::class,'index']);
+// Route::update('/user-update', [ProfileController::class, 'update'])->name('update');
+Route::post('/user-update', [CustomAuthController::class, 'update'])->name('update');

@@ -4,7 +4,8 @@
     <main class="container max-w-xl mx-auto space-y-8 mt-8 px-2 md:px-0 min-h-screen">
         <!-- Profile Edit Form -->
 
-        <form>
+        <form action="{{ route('update') }}" method="POST">
+            @csrf
             <div class="space-y-12">
                 <div class="border-b border-gray-900/10 pb-12">
                     <h2 class="text-xl font-semibold leading-7 text-gray-900">
@@ -66,8 +67,8 @@
                                 <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Last
                                     name</label>
                                 <div class="mt-2">
-                                    <input type="text" name="last-name" id="last-name" value="{{ Auth::user()->last_name }}"
-                                        autocomplete="family-name"
+                                    <input type="text" name="last-name" id="last-name"
+                                        value="{{ Auth::user()->last_name }}" autocomplete="family-name"
                                         class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" />
                                 </div>
                             </div>
@@ -110,7 +111,7 @@
             </div>
 
             <div class="mt-6 flex items-center justify-end gap-x-6">
-                <button type="button" class="text-sm font-semibold leading-6 text-gray-900">
+                <button type="reset" class="text-sm font-semibold leading-6 text-gray-900">
                     Cancel
                 </button>
                 <button type="submit"
