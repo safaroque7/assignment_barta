@@ -11,12 +11,21 @@ class HomeController extends Controller
 
     public function index()
     {
+<<<<<<< HEAD
         // $user_id = Auth::user()->id;
         // $user_name = Auth::user()->name;
         // return view("welcome", compact("user_id", "user_name"));
 
         return view("welcome");
+=======
+        $user_id = Auth::user()->id;
+        $user_name = Auth::user()->first_name;
+        $last_name = Auth::user()->last_name;
+        return view("welcome", compact("user_id", "user_name", "last_name"));
+>>>>>>> b389e16e17eb3127bb007cf28be59161cc9013e9
     }
+
+
     public function profile()
     {
         $allUsers = DB::table("users")->limit(1)->orderBy('id', 'desc')->get();

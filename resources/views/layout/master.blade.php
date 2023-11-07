@@ -110,6 +110,11 @@
                                 </button>
                             </div>
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> b389e16e17eb3127bb007cf28be59161cc9013e9
                             <!-- Dropdown menu -->
                             <div x-show="open" @click.away="open = false"
                                 class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
@@ -128,11 +133,24 @@
                                 @endauth
 
                                 @guest
+<<<<<<< HEAD
                                     <a href="{{ route('signIn') }}"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
                                         tabindex="-1" id="user-menu-item-2">Sign in</a>
                                 @endguest
                             </div>
+=======
+
+                                    <a href="{{ route('signIn') }}"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
+                                        tabindex="-1" id="user-menu-item-2">sign in</a>
+                                @endguest
+                            </div>
+
+
+
+
+>>>>>>> b389e16e17eb3127bb007cf28be59161cc9013e9
                         </div>
                     </div>
                     <div class="-mr-2 flex items-center sm:hidden">
