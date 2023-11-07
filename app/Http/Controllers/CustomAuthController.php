@@ -32,9 +32,9 @@ class CustomAuthController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required',
-            'password' => 'required',
-            'bio' => 'required',
-        ])->validated();
+            'password' => 'nullable',
+            'bio' => 'nullable',
+        ]);
 
         //    $user = Auth::user();
         //    $user->first_name = $request['first_name'];    
@@ -54,9 +54,9 @@ class CustomAuthController extends Controller
             'bio' => $request->bio,
         ];
 
-        $updatedData = DB::table("users")->update($user);
-        dd($updatedData);
+        $updatedData = DB::table("users")->where('id', Auth::user()->id)->update($user);
+        // dd($updatedData);
 
-        return redirect()->route('signIn');
+        return back();
     }
 }

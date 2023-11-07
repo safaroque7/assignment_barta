@@ -13,15 +13,9 @@
 
         <a href="{{ route('form1') }}"> Form 1 </a>
 
-<<<<<<< HEAD
         {{-- <h1> Current User ID </h1>
         {{ $user_id }}
         <h1> Cureent User's name </h1>
         {{ $user_name }} --}}
-=======
-        @auth
-            <h1 class="text-xl animate-ping"> {{ $user_name }} {{ $last_name }} </h1>
-        @endauth
->>>>>>> b389e16e17eb3127bb007cf28be59161cc9013e9
     </div>
 @endsection
