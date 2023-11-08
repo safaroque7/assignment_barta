@@ -18,11 +18,11 @@
 
                     <div>
                         <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>
+                            {{-- @foreach ($errors->all() as $error)
+                                <li class="text-red-500">
                                     {{ $error }}
                                 </li>
-                            @endforeach
+                            @endforeach --}}
                         </ul>
                     </div>
 
@@ -66,37 +66,52 @@
                             <div class="sm:col-span-3">
                                 <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">First
                                     name</label>
-                                <div class="mt-2">
+                                <div class="my-2">
                                     <input type="text" name="first_name" id="first-name" autocomplete="given-name"
                                         value="{{ Auth::user()->first_name }}"
-                                        class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" />
+                                        class="block w-full rounded-md border p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6 @error('first_name') border !border-red-500 @enderror" />
                                 </div>
+                                @error('first_name')
+                                    <span class="text-red-500">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="sm:col-span-3">
                                 <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Last
                                     name</label>
-                                <div class="mt-2">
+                                <div class="my-2">
                                     <input type="text" name="last_name" id="last-name"
                                         value="{{ Auth::user()->last_name }}" autocomplete="family-name"
-                                        class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" />
+                                        class="block w-full rounded-md border p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6 @error('last_name') !border-red-500 @enderror" />
                                 </div>
+                                @error('last_name')
+                                    <span class="text-red-500">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="col-span-full">
                                 <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email
                                     address</label>
-                                <div class="mt-2">
+                                <div class="my-2">
                                     <input id="email" name="email" type="email" autocomplete="email"
                                         value="{{ Auth::user()->email }}"
-                                        class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" />
+                                        class="block w-full rounded-md border p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6 @error('email') border-red-500 @enderror" />
                                 </div>
+                                @error('email')
+                                    <span class="text-red-500">
+                                        {{ $message }}    
+                                    </span>                                    
+                                @enderror
                             </div>
 
                             <div class="col-span-full">
                                 <label for="password"
                                     class="block text-sm font-medium leading-6 text-gray-900">Password</label>
-                                <div class="mt-2">
+                                <div class="my-2">
                                     <input type="password" name="password" id="password" autocomplete="password"
                                         class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" />
                                 </div>

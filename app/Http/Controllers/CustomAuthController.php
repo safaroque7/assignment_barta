@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Flasher\Laravel\Facade\Flasher;
+use Flasher\Prime\FlasherInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +26,7 @@ class CustomAuthController extends Controller
         return back()->with('error', 'username or password is not correct');
     }
 
-    public function update(Request $request)
+    public function update(Request $request, FlasherInterface $flasher)
     {
         // dd('Hi how are you');
 
@@ -56,7 +58,8 @@ class CustomAuthController extends Controller
 
         $updatedData = DB::table("users")->where('id', Auth::user()->id)->update($user);
         // dd($updatedData);
-
+        $flasher->addSuccess('Updated Successfully');
+        
         return back();
     }
 }

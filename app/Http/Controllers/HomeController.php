@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Flasher\Laravel\Facade\Flasher;
+use Flasher\Prime\FlasherInterface;
 
 class HomeController extends Controller
 {
@@ -36,7 +38,7 @@ class HomeController extends Controller
         return view("register");
     }
 
-    public function registrationPost(Request $request)
+    public function registrationPost(Request $request, FlasherInterface $flasher)
     {
         $user = [
             'first_name' => $request->first_name,
@@ -47,6 +49,9 @@ class HomeController extends Controller
         ];
 
         DB::table("users")->insert($user);
+
+        $flasher->addSuccess("Registration Successful");
+        
         return redirect()->route('signIn');
     }
 
