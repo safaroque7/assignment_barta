@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\postController;
 use App\Http\Controllers\FormController1;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomAuthController;
@@ -102,3 +103,5 @@ Route::get('/', [HomeController::class, 'index']);
 
 // Route::update('/user-update', [ProfileController::class, 'update'])->name('update');
 Route::post('/user-update', [CustomAuthController::class, 'update'])->name('update');
+
+Route::post('/post', [postController::class,'post'])->name('post');
