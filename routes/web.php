@@ -8,6 +8,7 @@ use App\Http\Controllers\postController;
 use App\Http\Controllers\FormController1;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\PostControllerFinal;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,18 +21,14 @@ use App\Http\Controllers\CustomAuthController;
 |
 */
 
-Route::get(
-    '/',
-    function () {
+// Route::get(
+//     '/',
+//     function () {
+//         return view('welcome');
+//     }
+// );
 
-        if (Auth::check()) {
-            return view('welcome');
-        } else {
-            return redirect('signIn');
-        }
-    }
-);
-
+Route::get('/', [PostControllerFinal::class, 'index']);
 
 Route::get('profile', [HomeController::class, 'profile'])->name('profile');
 Route::get('edit/profile', [HomeController::class, 'editProfile'])->name('editProfile');
@@ -99,9 +96,11 @@ Route::get('/form2', [
     FormController1::class, 'showForm2'
 ])->name('form2.show');
 
-Route::get('/', [HomeController::class, 'index']);
+// Route::get('/', [HomeController::class, 'index']);
 
 // Route::update('/user-update', [ProfileController::class, 'update'])->name('update');
 Route::post('/user-update', [CustomAuthController::class, 'update'])->name('update');
 
-Route::post('/post', [postController::class,'post'])->name('post');
+Route::resource('/posts', PostControllerFinal::class);
+
+
