@@ -89,6 +89,8 @@
         <!-- /Barta Create Post Card -->
 
 
+        <img src="{{ asset('images/flower.webp') }}" alt="">
+
 
         <!-- Newsfeed -->
         <section id="newsfeed" class="space-y-6">
@@ -113,12 +115,13 @@
                                 <div class="text-gray-900 flex flex-col min-w-0 flex-1">
                                     <a href="https://github.com/alnahian2003"
                                         class="hover:underline font-semibold line-clamp-1">
-                                        Al Nahian
+                                        {{ $post->first_name }}
+                                        {{ $post->last_name }}
                                     </a>
 
                                     <a href="https://twitter.com/alnahian2003"
                                         class="hover:underline text-sm text-gray-500 line-clamp-1">
-                                        @alnahian2003
+                                        {{ $post->email }}
                                     </a>
                                 </div>
                                 <!-- /User Info -->
@@ -148,8 +151,10 @@
                     <!-- Content -->
                     <div class="py-4 text-gray-700 font-normal">
                         <p>
-                            {{ $post->id }} <br>
-                            {{ $post->tweet }}
+                            {{-- {{ $post->id }} <br> --}}
+                            {{-- {{ $post->tweet }} --}}
+
+                            {{ str($post->tweet)->words(25, '...see more') }}
                         </p>
                     </div>
 

@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormController;
@@ -7,8 +9,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\postController;
 use App\Http\Controllers\FormController1;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\PostControllerFinal;
+use App\Http\Controllers\CustomAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +30,23 @@ use App\Http\Controllers\PostControllerFinal;
 //     }
 // );
 
-Route::get('/', [PostControllerFinal::class, 'index']);
+// Route::get('/', [PostControllerFinal::class, 'index']);
+// Route::get('/', function(){
+//     // $users = DB::table('users')->find(2, ['id', 'first_name','email']);
+//     // $users = DB::table('users')->count();
+//     // dd($users);
+//     return view('welcome');
+// });
+
+Route::get('/', function () {
+    $posts = DB::table('users')
+        ->leftJoin('post', 'users.id', '=', 'post.id')
+        ->get();
+
+        // dd($posts);
+
+    return view('welcome', compact('posts'));
+});
 
 Route::get('profile', [HomeController::class, 'profile'])->name('profile');
 Route::get('edit/profile', [HomeController::class, 'editProfile'])->name('editProfile');
@@ -104,3 +122,12 @@ Route::post('/user-update', [CustomAuthController::class, 'update'])->name('upda
 Route::resource('/posts', PostControllerFinal::class);
 
 
+
+$friends = ['kamal', 'jamal', 'obaydul', 'hannan'];
+
+// dd(Arr::last($friends));
+// dd(Arr::first($friends));
+// dd(Arr::random($friends));
+// dd(Arr::shuffle($friends));
+// dd(Arr::join($friends, '❤'));
+// dd(Arr::join($friends, ', ', ' and '));
