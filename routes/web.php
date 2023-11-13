@@ -38,15 +38,15 @@ use App\Http\Controllers\CustomAuthController;
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
-    $posts = DB::table('users')
-        ->leftJoin('post', 'users.id', '=', 'post.id')
-        ->get();
+// Route::get('/', function () {
+//     $posts = DB::table('users')
+//         ->leftJoin('post', 'users.id', '=', 'post.id')
+//         ->get();
 
-        // dd($posts);
+//         // dd($posts);
 
-    return view('welcome', compact('posts'));
-});
+//     return view('welcome', compact('posts'));
+// });
 
 Route::get('profile', [HomeController::class, 'profile'])->name('profile');
 Route::get('edit/profile', [HomeController::class, 'editProfile'])->name('editProfile');
@@ -115,15 +115,18 @@ Route::get('/form2', [
 ])->name('form2.show');
 
 // Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [PostControllerFinal::class, 'index']);
 
 // Route::update('/user-update', [ProfileController::class, 'update'])->name('update');
 Route::post('/user-update', [CustomAuthController::class, 'update'])->name('update');
 
 Route::resource('/posts', PostControllerFinal::class);
 
+Route::get('/posts/{id}', [PostControllerFinal::class, 'show'])->name('show');
+Route::get('profiles/{id}', [PostControllerFinal::class, 'singleProfile'])->name('singleProfile');
 
 
-$friends = ['kamal', 'jamal', 'obaydul', 'hannan'];
+// $friends = ['kamal', 'jamal', 'obaydul', 'hannan'];
 
 // dd(Arr::last($friends));
 // dd(Arr::first($friends));

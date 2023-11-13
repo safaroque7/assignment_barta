@@ -15,9 +15,17 @@ class PostControllerFinal extends Controller
     public function index()
     {
         $posts = DB::table("post")->orderBy('id', 'desc')->get();
-        // dd($posts);
 
-        return view("welcome", compact('posts'));
+        $postsInfo = DB::table('users')
+            ->leftJoin('post', 'users.id', '=', 'post.id')
+            ->get();
+
+        // dd($postsInfo);
+
+        return  
+            view("welcome")
+            ->with('posts', $posts)
+            ->with('postsInfo', $postsInfo);
     }
 
     /**
@@ -58,7 +66,8 @@ class PostControllerFinal extends Controller
      */
     public function show($id)
     {
-        //
+        $post = DB::table("post")->where("id", $id)->first();
+        return view("single", compact("post"));
     }
 
     /**
@@ -82,6 +91,12 @@ class PostControllerFinal extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function profile($id)
+    {
+        $post = DB::table("post")->where("id", $id)->first();
+        return view("profile", compact("post"));
     }
 
     /**

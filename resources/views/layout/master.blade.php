@@ -221,6 +221,7 @@
         @yield('form2')
         @yield('form3')
         @yield('formFinal')
+        @yield('singlePage')
 
         <!-- Barta Create Post Card -->
         <!--      <form-->
