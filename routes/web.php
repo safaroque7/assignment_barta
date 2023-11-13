@@ -52,7 +52,7 @@ Route::get('profile', [HomeController::class, 'profile'])->name('profile');
 Route::get('edit/profile', [HomeController::class, 'editProfile'])->name('editProfile');
 Route::get('registerUser', [HomeController::class, 'registerUser'])->name('registerUser');
 Route::post('registrationPost', [HomeController::class, 'registrationPost'])->name('registrationPost');
-Route::get('signIn', [HomeController::class, 'signIn'])->name('signIn');
+Route::get('signIn', [HomeController::class, 'signIn'])->name('login');
 Route::post('customLogin', [CustomAuthController::class, 'customLogin'])->name('customLogin');
 
 
@@ -115,7 +115,7 @@ Route::get('/form2', [
 ])->name('form2.show');
 
 // Route::get('/', [HomeController::class, 'index']);
-Route::get('/', [PostControllerFinal::class, 'index']);
+Route::get('/', [PostControllerFinal::class, 'index'])->middleware('auth');
 
 // Route::update('/user-update', [ProfileController::class, 'update'])->name('update');
 Route::post('/user-update', [CustomAuthController::class, 'update'])->name('update');
