@@ -49,6 +49,6 @@ class FormController extends Controller
     {
         // session()->flush();
         session()->invalidate();
-        return to_route('signIn');
+        return to_route('login');
     }
 }

@@ -52,12 +52,12 @@ class HomeController extends Controller
 
         $flasher->addSuccess("Registration Successful");
         
-        return redirect()->route('signIn');
+        return redirect()->route('login');
     }
 
     public function signIn()
     {
-        return view("signIn");
+        return view("login");
     }
 
 

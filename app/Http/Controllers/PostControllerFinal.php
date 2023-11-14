@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class PostControllerFinal extends Controller
 {
@@ -14,18 +15,28 @@ class PostControllerFinal extends Controller
      */
     public function index()
     {
-        $posts = DB::table("post")->orderBy('id', 'desc')->get();
+        $CurrentUserId = Auth::user()->id;
+        $CurrentUserFirstName = Auth::user()->first_name;
+        $CurrentUserLastName = Auth::user()->last_name;
+        $CurrentUserEmail = Auth::user()->email;
+
+        $posts = DB::table("post")->get();
+        // dd($posts);
 
         $postsInfo = DB::table('users')
             ->leftJoin('post', 'users.id', '=', 'post.id')
+            ->select('first_name', 'last_name')
             ->get();
+        // ->last();
 
-        // dd($postsInfo);
+        $userInfo = DB::table('users')
+            ->where('id', '=', $CurrentUserId)
+            ->get('first_name', 'last_name');
 
-        return  
-            view("welcome")
-            ->with('posts', $posts)
-            ->with('postsInfo', $postsInfo);
+        // dd($userInfo);
+
+        // return view("welcome")->with('posts', $posts)->with('postsInfo', $postsInfo);
+        return view('welcome', compact('posts', 'postsInfo', 'CurrentUserFirstName', 'CurrentUserLastName', 'CurrentUserEmail'));
     }
 
     /**
@@ -66,8 +77,16 @@ class PostControllerFinal extends Controller
      */
     public function show($id)
     {
+
+        $CurrentUserFirstName = Auth::user()->first_name;
+        $CurrentUserLastName = Auth::user()->last_name;
+        $CurrentUserEmail = Auth::user()->email;
+
         $post = DB::table("post")->where("id", $id)->first();
-        return view("single", compact("post"));
+        // dd($post);
+
+        // dd($postsInfo);
+        return view("single", compact('post', 'CurrentUserFirstName', 'CurrentUserLastName', 'CurrentUserEmail'));
     }
 
     /**
@@ -76,9 +95,11 @@ class PostControllerFinal extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editPost($id)
     {
-        //
+        $data = DB::table('post')->where('id', $id)->get();
+        // dd($data);
+        return view("editPostPage")->with("data", $data);
     }
 
     /**
