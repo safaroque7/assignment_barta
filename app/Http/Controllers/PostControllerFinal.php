@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Flasher\Prime\FlasherInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -95,11 +96,12 @@ class PostControllerFinal extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function editPost($id)
+    public function editPost(Request $request)
     {
-        $data = DB::table('post')->where('id', $id)->get();
+        $id = $request->id;
+        $data = DB::table('post')->find($id);
         // dd($data);
-        return view("editPostPage")->with("data", $data);
+        return view("editPostPage", ['data' => $data]);
     }
 
     /**
@@ -109,9 +111,23 @@ class PostControllerFinal extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, FlasherInterface $Flasher)
     {
-        //
+        $request->validate([
+            "tweet" => "required"
+        ]);
+
+        $id = $request->id;
+
+        $data = [
+            "tweet" => $request->tweet,
+        ];
+
+        $result = DB::table("post")->where("id", $id)->update($data);
+        if ($result) {
+            $Flasher->addSuccess("Update successfully");
+        }
+        return redirect()->back();
     }
 
     public function profile($id)
@@ -126,8 +142,11 @@ class PostControllerFinal extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, FlasherInterface $Flasher)
     {
-        //
+        DB::table("post")->where("id", $id)->delete();
+        $Flasher->addSuccess("Post has been deleted successfully");
+        return redirect()->back();
+
     }
 }

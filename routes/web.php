@@ -53,7 +53,6 @@ Route::resource('/posts', PostControllerFinal::class);
 
 Route::get('/posts/{id}', [PostControllerFinal::class, 'show'])->name('show');
 Route::get('profiles/{id}', [PostControllerFinal::class, 'singleProfile'])->name('singleProfile');
-
-
-
-Route::get('posts/update/{id}', [PostControllerFinal::class,'editPost'])->name('editPost');
+Route::get('posts/edit/{id?}', [PostControllerFinal::class,'editPost'])->name('post.edit');
+Route::post('posts/update/{id?}', [PostControllerFinal::class,'update'])->name('post.update');
+Route::get('delete/{id}', [PostControllerFinal::class,'destroy'])->name('delete');
