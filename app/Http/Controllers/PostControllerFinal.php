@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Flasher\Prime\FlasherInterface;
+use Illuminate\Console\View\Components\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,7 @@ class PostControllerFinal extends Controller
         $CurrentUserLastName = Auth::user()->last_name;
         $CurrentUserEmail = Auth::user()->email;
 
-        $posts = DB::table("post")->get();
+        $posts = DB::table("post")->orderBy('id', 'desc')->get();
         // dd($posts);
 
         $postsInfo = DB::table('users')
@@ -33,7 +34,6 @@ class PostControllerFinal extends Controller
         $userInfo = DB::table('users')
             ->where('id', '=', $CurrentUserId)
             ->get('first_name', 'last_name');
-
         // dd($userInfo);
 
         // return view("welcome")->with('posts', $posts)->with('postsInfo', $postsInfo);

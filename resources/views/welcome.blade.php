@@ -175,17 +175,13 @@
                                     <a href="{{ route('post.edit', $post->id) }}"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
                                         tabindex="-1" id="user-menu-item-0">Edit</a>
-                                    <a href="{{ url('delete', $post->id) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                    <a href="{{ url('delete', $post->id) }}" onclick="return confirm('Are you sure you want to delete this posts?')" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                         role="menuitem" tabindex="-1" id="user-menu-item-1">Delete</a>
                                 </div>
                             </div>
                         </div>
                         <!-- /Card Action Dropdown -->
-
-
-
-
-                    </header>
+                        </header>
 
                     <!-- Content -->
                     <div class="py-4 text-gray-700 font-normal">

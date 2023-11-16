@@ -23,8 +23,22 @@ class HomeController extends Controller
 
     public function profile()
     {
-        $allUsers = DB::table("users")->limit(1)->orderBy('id', 'desc')->get();
-        return view("profile", ["users" => $allUsers]);
+        $CurrentUserId = Auth::user()->id;
+        $CurrentUserFirstName = Auth::user()->first_name;
+        $CurrentUserLastName = Auth::user()->last_name;
+        $CurrentUserEmail = Auth::user()->email;
+
+        // dd($CurrentUserFirstName);
+
+        // $posts = DB::table('post')
+        // ->leftJoin('post', 'users.id', '=', 'post.id')
+        // ->select('tweet',)
+        // ->get();
+
+        $posts = DB::table("post")->orderBy('id', 'desc')->get();
+        // dd($posts);
+
+        return view("profile", compact('posts', 'CurrentUserId', 'CurrentUserFirstName', 'CurrentUserLastName', 'CurrentUserEmail'));
     }
 
     public function editProfile()
@@ -51,7 +65,7 @@ class HomeController extends Controller
         DB::table("users")->insert($user);
 
         $flasher->addSuccess("Registration Successful");
-        
+
         return redirect()->route('login');
     }
 

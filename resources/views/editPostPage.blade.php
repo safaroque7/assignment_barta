@@ -42,10 +42,12 @@
 
                         <input type="submit" value="Update"
                             class="bg-green-500 text-white px-2 py-1 rounded-sm hover:bg-green-900 duration-300 cursor-pointer">
-                        <input type="submit" value="Delete"
+                        <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delet this post?')"
                             class="bg-red-500 text-white py-1 px-2 rounded-sm hover:bg-red-900 duration-300 cursor-pointer">
-                        <input type="reset" value="Cancel"
-                            class="bg-gray-500 text-white rounded-sm hover:bg-gray-900 duration-300 py-1 px-2 pointer cursor-pointer rounded-sm">
+                        <a href="{{ '/' }}"
+                            class="bg-gray-500 text-white rounded-sm hover:bg-gray-900 duration-300 py-1 px-2 pointer cursor-pointer rounded-sm inline-block">
+                            Cancel
+                        </a>
 
                     </form>
                 </div>
