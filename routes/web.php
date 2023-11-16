@@ -56,3 +56,5 @@ Route::get('profiles/{id}', [PostControllerFinal::class, 'singleProfile'])->name
 Route::get('posts/edit/{id?}', [PostControllerFinal::class,'editPost'])->name('post.edit');
 Route::post('posts/update/{id?}', [PostControllerFinal::class,'update'])->name('post.update');
 Route::get('delete/{id}', [PostControllerFinal::class,'destroy'])->name('delete');
+
+// Route::get('search/', [PostControllerFinal::class, 'search'])->name('search');

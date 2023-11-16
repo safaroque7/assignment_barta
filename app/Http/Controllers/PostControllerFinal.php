@@ -17,27 +17,25 @@ class PostControllerFinal extends Controller
      */
     public function index()
     {
-        $CurrentUserId = Auth::user()->id;
-        $CurrentUserFirstName = Auth::user()->first_name;
-        $CurrentUserLastName = Auth::user()->last_name;
-        $CurrentUserEmail = Auth::user()->email;
-
-        $posts = DB::table("post")->orderBy('id', 'desc')->get();
-        // dd($posts);
-
-        $postsInfo = DB::table('users')
-            ->leftJoin('post', 'users.id', '=', 'post.id')
-            ->select('first_name', 'last_name')
-            ->get();
-        // ->last();
-
-        $userInfo = DB::table('users')
-            ->where('id', '=', $CurrentUserId)
-            ->get('first_name', 'last_name');
-        // dd($userInfo);
-
-        // return view("welcome")->with('posts', $posts)->with('postsInfo', $postsInfo);
-        return view('welcome', compact('posts', 'postsInfo', 'CurrentUserFirstName', 'CurrentUserLastName', 'CurrentUserEmail'));
+        // $CurrentUserId = Auth::user()->id;
+        // $CurrentUserFirstName = Auth::user()->first_name;
+        // $CurrentUserLastName = Auth::user()->last_name;
+        // $CurrentUserEmail = Auth::user()->email;
+        // $posts = DB::table("post")->orderBy('id', 'desc')->get();
+        // $postsInfo = DB::table('users')
+        //     ->leftJoin('post', 'users.id', '=', 'post.id')
+        //     ->select('first_name', 'last_name')
+        //     ->get();
+        // $userInfo = DB::table('users')
+        //     ->where('id', '=', $CurrentUserId)
+        //     ->get('first_name', 'last_name');
+        
+        $posts = DB::table('post')
+        ->join('users', 'post.user_id', '=', 'users.id')
+        ->select('post.*', 'users.first_name', 'users.last_name', 'users.email')
+        ->get();
+        // return view('welcome', compact('posts', 'postsInfo', 'CurrentUserFirstName', 'CurrentUserLastName', 'CurrentUserEmail'));
+        return view('welcome', compact('posts'));
     }
 
     /**
@@ -64,6 +62,7 @@ class PostControllerFinal extends Controller
 
         $data = [
             "tweet" => $request->tweet,
+            "user_id"=> Auth::id(),
         ];
 
         DB::table("post")->insert($data);
@@ -132,7 +131,7 @@ class PostControllerFinal extends Controller
 
     public function profile($id)
     {
-        $post = DB::table("post")->where("id", $id)->first();
+        $post = DB::table("post")->where("id", $id);
         return view("profile", compact("post"));
     }
 
@@ -147,6 +146,36 @@ class PostControllerFinal extends Controller
         DB::table("post")->where("id", $id)->delete();
         $Flasher->addSuccess("Post has been deleted successfully");
         return redirect()->back();
+    }
 
+
+    // public function search(Request $request)
+    // {
+
+    //     $receivedSearchData = $request->search;
+
+    //     // $request->validate(['receivedSearchData' => 'required']);
+
+    //     $query = DB::table("post")->where('tweet', 'LIKE', '%' . $receivedSearchData . '%')->get();
+    //     $posts = DB::table('post')->get();
+
+    //     $CurrentUserId = Auth::user()->id;
+    //     $CurrentUserFirstName = Auth::user()->first_name;
+    //     $CurrentUserLastName = Auth::user()->last_name;
+    //     $CurrentUserEmail = Auth::user()->email;
+
+    //     return view('welcome', compact('query', 'posts', 'CurrentUserId', 'CurrentUserFirstName', 'CurrentUserLastName', 'CurrentUserEmail'));
+    //     // dd($query);
+    // }
+
+    public function singleProfile($user_id)
+    {
+        // $post = DB::table("post")->where("user_id", $user_id)->first();
+        $posts = DB::table('post')
+        ->join('users', 'post.user_id', '=', 'users.id')
+        ->select('post.*','users.first_name', 'users.last_name', 'users.email', 'users.bio')
+        ->where('user_id', $user_id)
+        ->get();
+        return view('profile', compact('posts'));
     }
 }
