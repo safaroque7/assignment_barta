@@ -36,7 +36,7 @@ class HomeController extends Controller
         // ->get();
 
         $posts = DB::table("post")->whereBetween('id', [8, 12])->get();
-       
+
 
 
         return view("profile", compact('posts', 'CurrentUserId', 'CurrentUserFirstName', 'CurrentUserLastName', 'CurrentUserEmail'));
