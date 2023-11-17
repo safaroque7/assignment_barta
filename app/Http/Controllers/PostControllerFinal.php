@@ -33,6 +33,7 @@ class PostControllerFinal extends Controller
         $posts = DB::table('post')
         ->join('users', 'post.user_id', '=', 'users.id')
         ->select('post.*', 'users.first_name', 'users.last_name', 'users.email')
+        ->orderBy('id','desc')
         ->get();
         // return view('welcome', compact('posts', 'postsInfo', 'CurrentUserFirstName', 'CurrentUserLastName', 'CurrentUserEmail'));
         return view('welcome', compact('posts'));
