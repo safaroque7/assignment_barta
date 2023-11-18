@@ -29,12 +29,12 @@ class PostControllerFinal extends Controller
         // $userInfo = DB::table('users')
         //     ->where('id', '=', $CurrentUserId)
         //     ->get('first_name', 'last_name');
-        
+
         $posts = DB::table('post')
-        ->join('users', 'post.user_id', '=', 'users.id')
-        ->select('post.*', 'users.first_name', 'users.last_name', 'users.email')
-        ->orderBy('id','desc')
-        ->get();
+            ->join('users', 'post.user_id', '=', 'users.id')
+            ->select('post.*', 'users.first_name', 'users.last_name', 'users.email')
+            ->orderBy('id', 'desc')
+            ->get();
         // return view('welcome', compact('posts', 'postsInfo', 'CurrentUserFirstName', 'CurrentUserLastName', 'CurrentUserEmail'));
         return view('welcome', compact('posts'));
     }
@@ -63,7 +63,7 @@ class PostControllerFinal extends Controller
 
         $data = [
             "tweet" => $request->tweet,
-            "user_id"=> Auth::id(),
+            "user_id" => Auth::id(),
         ];
 
         DB::table("post")->insert($data);
@@ -173,10 +173,17 @@ class PostControllerFinal extends Controller
     {
         // $post = DB::table("post")->where("user_id", $user_id)->first();
         $posts = DB::table('post')
-        ->join('users', 'post.user_id', '=', 'users.id')
-        ->select('post.*','users.first_name', 'users.last_name', 'users.email', 'users.bio')
-        ->where('user_id', $user_id)
-        ->get();
+            ->join('users', 'post.user_id', '=', 'users.id')
+            ->select('post.*', 'users.first_name', 'users.last_name', 'users.email', 'users.bio')
+            ->where('user_id', $user_id)
+            ->get();
         return view('profile', compact('posts'));
+    }
+
+    public function signOut()
+    {
+        session()->flush();
+        // session()->invalidate();
+        return to_route('login');
     }
 }

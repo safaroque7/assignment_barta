@@ -51,6 +51,7 @@ class HomeController extends Controller
     public function registerUser()
     {
         return view("register");
+        // return 'hi';
     }
 
     public function registrationPost(Request $request, FlasherInterface $flasher)

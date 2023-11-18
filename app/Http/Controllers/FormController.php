@@ -43,12 +43,5 @@ class FormController extends Controller
     {
         session()->flush();
         return to_route('step1');
-    }
-
-    public function signOut()
-    {
-        // session()->flush();
-        session()->invalidate();
-        return to_route('login');
-    }
+    }   
 }
