@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('post', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->default('');
-            $table->foreignId('Post_id')->default('');
-            $table->text('tweet');
+            $table->foreignId('user_id');
+            $table->foreignId('post_id');
+            $table->text('comment');
+            $table->date('now');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post');
+        Schema::dropIfExists('comments');
     }
 };

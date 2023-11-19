@@ -55,16 +55,19 @@ class PostControllerFinal extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storePost(Request $request)
     {
+
         $request->validate([
-            "tweet" => 'required|min:1',
+            "tweet" => "required|min:1"
         ]);
 
         $data = [
             "tweet" => $request->tweet,
-            "user_id" => Auth::id(),
+            "user_id" => Auth::id()
         ];
+
+        // dd($data);
 
         DB::table("post")->insert($data);
         return redirect()->route("posts.index");

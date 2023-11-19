@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Clients;
 use Illuminate\Support\Arr;
+use App\Http\Controllers\Clients;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -9,7 +9,9 @@ use App\Http\Controllers\FormController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\postController;
 use App\Http\Controllers\FormController1;
+use App\Http\Controllers\CommentsCtroller;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\PostControllerFinal;
 use App\Http\Controllers\CustomAuthController;
 
@@ -27,8 +29,8 @@ use App\Http\Controllers\CustomAuthController;
 Route::middleware('auth')->group(function () {
 
     Route::controller(PostControllerFinal::class)->group(function () {
-        Route::get('/', 'index')->name('posts.index');
-        Route::post('/posts', 'store')->name('posts.store');
+        Route::get('/', 'index');
+        Route::post('/posts', 'storePost')->name('posts.store');
         Route::get('/posts/{id}', 'show')->name('show');
         Route::get('profiles/{id}', 'singleProfile')->name('singleProfile');
         Route::get('posts/edit/{id?}', 'editPost')->name('post.edit');
@@ -53,6 +55,48 @@ Route::post('/form2', [FormController1::class, 'form2'])->name('form2');
 Route::post('/form3', [FormController1::class, 'form3'])->name('form3');
 Route::post('/formFinal', [FormController1::class, 'formFinal'])->name('formFinal');
 Route::get('/form2', [FormController1::class, 'showForm2'])->name('form2.show');
+
+
+// Route::post('/posts', [CommentsController::class, 'storeComments'])->name('comments.store');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Route::get('search/', [PostControllerFinal::class, 'search'])->name('search');
 

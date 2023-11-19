@@ -12,7 +12,8 @@
                         <div class="flex items-center space-x-3">
                             <!-- User Info -->
                             <div class="text-gray-900 flex flex-col min-w-0 flex-1">
-                                <a href="{{ route('profile', $post->id) }}" class="hover:underline font-semibold line-clamp-1">
+                                <a href="{{ route('profile', $post->id) }}"
+                                    class="hover:underline font-semibold line-clamp-1">
                                     {{ $CurrentUserFirstName }}
                                     {{ $CurrentUserLastName }}
                                 </a>
@@ -73,9 +74,10 @@
                 </div>
 
                 <hr class="my-6" />
-
                 <!-- Barta Create Comment Form -->
-                <form action="" method="POST">
+
+                <form action="{{ route('comments.store') }}" method="POST">
+                    @csrf
                     <!-- Create Comment Card Top -->
                     <div>
                         <div class="flex items-start /space-x-3/">
