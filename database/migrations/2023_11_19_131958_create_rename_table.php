@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('post', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->default('');
-            $table->foreignId('Post_id')->default('');
-            $table->text('tweet');
-            $table->timestamps();
+        Schema::table('users', function($table){
+            $table->string('qualification');
         });
     }
 
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post');
+        // Schema::drop('posts');
     }
 };
